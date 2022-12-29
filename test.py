@@ -1,17 +1,18 @@
 class Solution(object):
-    def merge(self, intervals):
-        if len(intervals)==0:
-            return []
-        sort_intervals = sorted(intervals, key=lambda x:x[0])
-        res=[sort_intervals[0]]
-        for interval in sort_intervals[1:]:
-            if interval[0]<=res[-1][1]:
-                res[-1][1]=max(interval[1],res[-1][1])
-            res.append(intervals)
-        return res
-        """
-        :type nums: List[int]
-        :rtype: List[List[int]]
-        """
-intervals = [[1,3],[2,6],[8,10],[15,18]]
-Solution().merge(intervals)
+    def sortColors(self, nums):
+        head = 0
+        tail = len(nums)-1
+        i = 0
+        while i <= tail:
+            if nums[i] ==0:
+                nums[head], nums[i] = nums[i], nums[head]
+                head+=1
+                i+=1
+            elif nums[i]==1:
+                i+=1
+            elif nums[i]==2:
+                nums[tail], nums[i]=nums[i], nums[tail]
+                tail-=1
+        return nums
+nums = [2,0,2,1,1,0]
+Solution().sortColors(nums)
